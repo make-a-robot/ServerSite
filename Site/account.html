@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make A Robot Classes</title>
+    <link rel="icon" type="image/png" href="logo.jpg">
+    <link rel="stylesheet" type="text/css" href="basic.css">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+      .header {
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 40px); /* Adjust for header height */
+        padding-bottom: 10%;
+      }
+      .box {
+        max-width: 99%;
+        margin-left: 5%;
+        margin-right: 5%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding-bottom: 10%;
+      }
+      .menu {
+        display: flex;
+        margin-left: 5%;
+        margin-right: 5%;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      .menu a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .menu a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+</head>
+<body> 
+  <h1 style="display:none ">
+    Arduino Classes For Kids
+  </h1>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png", alt
+             logo="Logo">
+        </div>
+        <div class="navbar-title">
+            <h1>Make A Robot Classes</h1>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+            <ul class="menu-links" id="menuLinks">
+                <a href="index.html" class = "Current_Page" >Home</a>
+                <a href="Session Information.html" class = "Other_Pages">Session Informaton</a>
+                <a href="Booking.html" class = "Other_Pages">Booking</a>\
+            </ul>
+        </div>
+        <div id="menu-icon" onclick="toggleMenu()">
+            <div id="bar1" style="margin-top: 6px;"></div>
+            <div id="bar2"></div>
+            <div id="bar3"></div>
+        </div>
+    </nav>
+
+    
+    <div class="header">
+    </div>
+    <div class="container">
+        <div class="box">
+            <div class="menu"> 
+                <p id="Name">Name: unknown/loading</p>
+            </div>
+
+            <div class="menu">
+                 <div style="width: 100%;">
+                    <h3>Dashboard:</h3>
+                </div>
+                <br>
+                <div id="UpcomingClasses", style="text-align: center;">
+                    <h4>Upcoming Classes</h4>
+                </div>
+            </div>
+
+            <div class="menu"> 
+            <a href="#">Booking</a>
+            <a href="#">Schedule</a>
+            <a href="#">Settings</a>
+        </div>
+        </div>
+    </div>
+
+   <div class="footer">
+       <span>Broadlands, VA</span> - <a href="tel:+15714642577" >(571) 464 2577</a> - <a href="mailto:contact@makearobot.xyz">contact@makearobot.xyz</a>
+    </div>      
+    <script> 
+    var NameText = document.getElementById("Name");
+    var InfoText = document.getElementById("Info");
+    var UpcomingClassesDiv = document.getElementById("UpcomingClasses");
+    var id = localStorage.getItem("id");
+    if (id){
+    fetch('/get-account-info', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({id}),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                const info = data.foundUser;
+                const Name = info.Name;
+                NameText.textContent = "Name: " + Name;
+                if(info.Kids.length === 0){
+                    InfoText.textContent = "No Kids On Your Account";
+                } else{
+                    var upcomingClasses = [];
+                    for (let i = 0; i < info.Kids.length; i++) {
+                        const Kid = info.Kids[i];
+                        if(Kid.Classes.length > 0){
+                            const classes = Kid.Classes;
+                            const currentDate = new Date();
+
+                            for (let index = 0; index < classes.length; index++) {
+                                var Kid_class = classes[index];
+                                Kid_class.Name = Kid.Details.Name;
+                                console.log(Kid_class);
+                                upcomingClasses.push(Kid_class)
+                            }
+                            KidsClasses = []
+                            for (let i = 0; i < upcomingClasses.length; i++) {
+                                const cls = upcomingClasses[i];
+                                const [day, month, year] = cls.Date.split('/');
+                                const [hours, minutes] = cls.startTime.split(':');
+                                const classDate = new Date(`${year}/${month}/${day} ${hours}:${minutes}`);
+                                if(classDate.getTime() > currentDate.getTime()){
+                                    KidsClasses.push(cls);
+                                }
+                                
+                            }
+                            console.log(KidsClasses, currentDate);
+                            upcomingClasses = KidsClasses
+
+
+                            
+                        }
+                        
+                    }
+
+                    // Sort the upcoming classes in chronological order
+                    upcomingClasses.sort((a, b) => {
+                        const [aMonth, aDay, aYear] = a.Date.split('/');
+                        const [aHours, aMinutes] = a.startTime.split(':');
+                        const aDate = new Date(`${aYear}/${aMonth}/${aDay} ${aHours}:${aMinutes}`);
+
+                        const [bMonth, bDay, bYear] = b.Date.split('/');
+                        const [bHours, bMinutes] = b.startTime.split(':');
+                        const bDate = new Date(`${bYear}/${bMonth}/${bDay} ${bHours}:${bMinutes}`);
+
+                        return aDate - bDate;   
+                    });
+                    console.log(upcomingClasses)
+                    UpcomingClassesDiv.append(document.createElement("br"));
+                    for (let i = 0; i < upcomingClasses.length; i++) {
+                        const Class = upcomingClasses[i];
+                        const classElement = document.createElement("p");
+                        classElement.textContent = "Class For " + Class.Name +" On: " + Class.Date + " From " + Class.startTime + " To " + Class.endTime + " " + Class.Place;
+                        classElement.style = "text-allign:center;";
+                        UpcomingClassesDiv.append(classElement);
+                    }
+                }
+                })
+                .catch((error) => {
+                console.error('Error sending info:', error);
+                });
+            } else{
+                alert("No Account Found Please Log In Or Sign Up")
+                window.location.href = "login.html";
+            }
+    </script>
+    <script src="basic.js"> </script> 
+</body>
+</html>

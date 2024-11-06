@@ -1,0 +1,76 @@
+{
+    "users": [
+        {
+            "userId": "914f1725-c807-40c7-9bdb-d303ff55149b",
+            "Name": "Malek Abdoh",
+            "Phone": "+1 (571) 464-2577",
+            "Email": "malekabdoh2000@gmail.com",
+            "Password": "MAKmak@99",
+            "Kids": [
+                {
+                "Classes": [     
+                    {
+                        "Date": "03/04/2025",
+                        "startTime": "16:00",
+                        "endTime": "17:00",
+                        "Place": "In Person:Our Location",
+                        "Price": "30$"
+                    },    
+                    {
+                        "Date": "03/08/2025",
+                        "startTime": "12:00",
+                        "endTime": "13:00",
+                        "Place": "In Person:Our Location",
+                        "Price": "30$"
+                    },    
+                    {
+                        "Date": "06/01/2025",
+                        "startTime": "16:00",
+                        "endTime": "17:00",
+                        "Place": "In Person:Our Location",
+                        "Price": "30$"
+                    },    
+                    {
+                        "Date": "03/02/2024",
+                        "startTime": "16:00",
+                        "endTime": "17:00",
+                        "Place": "In Person:Our Location",
+                        "Price": "30$"
+                    },
+                    {
+                        "Date": "03/04/2025",
+                        "startTime": "6:00",
+                        "endTime": "7:00",
+                        "Place": "In Person:Our Location",
+                        "Price": "30$"
+                    }             
+                ],
+                "Details":{
+                    "Name": "Malek Abdoh",
+                    "Birthday": "26/04/2011",
+                    "Arduino_Level": "N/A",
+                    "Python_Level": "N/A",
+                    "Scratch_Level": "N/A"
+                }
+            
+                }
+    ],
+            "Payments": {
+                "Cards": {},
+                "Bills": {}
+            }
+        },
+        {
+            "userId": "959536f8-e7a2-49c3-b25d-ed0e2d93efc8",
+            "Name": "Malek",
+            "Phone": "5714642577",
+            "Email": "malekabdoh200099@icloud.com",
+            "Password": "MAKmak@99",
+            "Kids": {},
+            "Payments": {
+                "Cards": {},
+                "Bills": {}
+            }
+        }
+    ]
+}

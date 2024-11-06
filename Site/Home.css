@@ -1,0 +1,116 @@
+    .title {
+        text-align: center;
+        font-size: 250%;
+        padding-top: 0%;
+        margin-top: 5%;
+        margin-bottom: 0%;
+        padding: 0px;
+        color: black;
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+    }
+
+
+    .slogan{
+        text-align: center;
+        color: #666; 
+        font-size: 150%;  
+        margin-top: 0px;
+        margin-bottom: 10%;  
+        padding: 0px;
+        line-height: 0; 
+        font-family: Playfair Display, serif;
+    }
+
+    @media (hover: none) {
+        .about{
+            font-size: 10%;
+        }
+        .title{
+            line-height: 100%;
+            padding-bottom: 8%;
+        }
+
+        .slogan{
+            padding-bottom: 5%; 
+        }
+        
+    }
+
+    @media (min-width: 1280px) {
+        .title {
+            font-size: 62px;
+            padding: 100px;
+            margin-bottom: 0;
+            margin-top: -3%;
+            line-height: 0;
+        }
+        
+    }
+    
+
+    .button {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 15px 15%;
+        margin: auto 25px;
+        font-size: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: rgba(255,255,255,.15);
+    }
+
+    .about{
+        font-size: 140%;
+        margin: 0 5%; 
+        text-align: center; 
+        min-width: 75%;
+    }
+
+    .contactdiv{
+        width:35%;
+        text-align:right;
+        max-width:280px;
+        display:inline-block;
+        vertical-align:top;
+        padding:0 10px 0 0;
+    }
+
+    .contactdiv a{
+        color: #00cc00;
+    }
+    .mapdiv{
+        width:60%;display:inline-block;padding:0;
+    }
+    @media only screen and (max-width: 950px) {
+        .contactdiv{
+            width:100%;
+            display:block;
+            text-align:center;
+            margin:auto;
+        }
+        .mapdiv{
+            display:block;
+            width:100%;
+            padding-top:10px;
+        }
+        .about{
+            font-size: large;
+        }
+    }
+    .info{
+        border-color: #51b32d;
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 50px;
+        margin-left: 9%;
+        margin-right: 9%;
+        padding: 3%;
+        margin-top: 9%;
+        margin-bottom: 15%;
+    }

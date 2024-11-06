@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Make A Robot Classes</title>
+    <link rel="icon" type="image/png" href="logo.jpg">
+    <link rel="stylesheet" type="text/css" href="basic.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            padding-right: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+            margin: auto auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .alt-login {
+            text-align: center;
+        }
+        .alt-login a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body> 
+  <h1 style="display:none ">
+    Arduino Classes For Kids
+  </h1>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="logo.png" alt
+             logo="Logo">
+        </div>
+        <div class="navbar-title">
+            <h1>Make A Robot Classes</h1>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+            <ul class="menu-links" id="menuLinks">
+                <a href="index.html" class = "Other_Pages" >Home</a>
+                <a href="Session Information.html" class = "Other_Pages">Session Informaton</a>
+                <a href="Booking.html" class = "Current_Page">Booking</a>
+            </ul>
+        </div>
+        <div id="menu-icon" onclick="toggleMenu()">
+            <div id="bar1" style="margin-top: 6px;"></div>
+            <div id="bar2"></div>
+            <div id="bar3"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Log In</h2>
+        <form id="emailLoginForm" onsubmit="submitEmailLogin(event)">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Log In with Email">
+        </form>
+        
+        <div class="alt-login" style="font-size: 80%;">
+            <p>Dont have an account? <a href="sign_up.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function submitEmailLogin(event) {
+            event.preventDefault();
+            // Get email and password from the form
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var formInfo = {email,password}
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formInfo),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                if(data.emailExists){
+                    if(data.PasswordCorrect){
+                        if(30<data.AccountId.length){
+                            var AccountId = data.AccountId;
+                            localStorage.setItem('id', JSON.stringify(AccountId));
+                            console.log(AccountId);
+                        }
+                    } else{
+                        alert("Password Incorrect.");
+                    }
+                } else{
+                        alert("No Account With This Email Exists.");
+                    }
+                })
+                .catch((error) => {
+                console.error('Error sending info:', error);
+                });
+            
+
+            
+            window.location.href = "account.html";
+            
+        }
+    </script>
+
+   <div class="footer">
+       <span>Broadlands, VA</span> - <a href="tel:+15714642577" >(571) 464 2577</a> - <a href="mailto:contact@makearobot.xyz">contact@makearobot.xyz</a>
+    </div>      
+    <script src="basic.js"> </script> 
+</body>
+</html>
