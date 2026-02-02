@@ -101,8 +101,9 @@ white-space: nowrap;
         flex-direction: column;
         top: 0;
         right: 0;
-        width: 66.66667%;
-        min-width: 290px;
+        width: 50%;
+        min-width: 225px;
+        max-width: 275px;
         height: 100%;
         background-color: #51b32d;
         z-index: 0;
@@ -110,26 +111,35 @@ white-space: nowrap;
         transition: transform 0.5s ease-in-out;
         white-space: inherit;
         columns: auto 1;
+        margin-left: 0;
+        justify-content: center;
     }
 
     .Other_Pages{
         line-height: 300%;
         text-align: center;
-        margin-right: 20%;
     }
 
     .Current_Page{
         line-height: 300%;
         text-align: center;
-        margin-right: 20%;
     }
 
     #menuLinks{
         display: block;
+        padding: 0 0;
+        margin: 0;
     }
 
     #menuLinks.open{
         display: block;
+    }
+
+
+    #menuLinks a{
+        display: block;
+        text-align: center;
+        padding: 0 0;
     }
 
     .menu-icon {
